@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="João Hneda">
+<meta name="dcterms.date" content="2024-11-10">
+<meta name="description" content="Resultados no contexto de dados de dengue">
+
+<title>(Relatório em R) - Aplicação no contexto de dados de séries temporais de dengue🦟 – João Hneda</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-cd8a8e8170c353cb7738003b88335e48.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="(Relatório em R) - Aplicação no contexto de dados de séries temporais de dengue🦟 – João Hneda">
+<meta property="og:description" content="Resultados no contexto de dados de dengue">
+<meta property="og:image" content="imagens/dengue.jpg">
+<meta property="og:site_name" content="João Hneda">
+<meta property="og:locale" content="en_US">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">João Hneda</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">(Relatório em R) - Aplicação no contexto de dados de séries temporais de dengue🦟</h1>
+            <p class="subtitle lead">Desenvolvimento de Relatório em R</p>
+                  <div>
+        <div class="description">
+          Resultados no contexto de dados de dengue
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">Estatística</div>
+                <div class="quarto-category">Visualização de Dados</div>
+                <div class="quarto-category">Análise de Dados</div>
+                <div class="quarto-category">Ciência de Dados</div>
+                <div class="quarto-category">Relatório</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p><a href="true">João Hneda</a> </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 10, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<div style="page-break-after: always;"></div>
+<section id="introdução" class="level1">
+<h1>Introdução</h1>
+<ul>
+<li>De acordo com a Organização Mundial da Saúde, <strong>Dengue</strong> é uma infecção viral que é transmitida de mosquitos para pessoas.</li>
+<li>É mais comum em climas tropicais e subtropicais.</li>
+<li>A maioria das pessoas que são infectadas com dengue não tem sintomas. Para aqueles que tem, os sintomais mais comuns são febre alta, dor de cabeça, dores no corpo, náusea e irritação na pele. Algumas pessoas desenvolvem dengue severa e precisam de apoio em um hospital. Em casos severos, dengue pode ser fatal.</li>
+</ul>
+<p>(WHO, 2024)</p>
+<p>Portanto, há necessidade de que se tenha o acompanhamento e monitoramento dessa doença em termos estatísticos e epidemiológicos.</p>
+<ul>
+<li><strong>Objetivo principal</strong>: <!-- <div style="position: relative; left:0px; top: -15px;"> -->
+<ul>
+<li>Acompanhamento de séries temporais relacionadas à doença de dengue <!-- </div> --></li>
+</ul></li>
+<li><strong>Objetivos secundários</strong>: <!-- <div style="position: relative; left:0px; top: -15px;"> -->
+<ul>
+<li>Definição de séries temporais <br></li>
+<li>Descrição da doença <br></li>
+<li>Coleta dos dados <br></li>
+<li>Análise Descritiva e Exploratória dos Dados <!-- </div> --></li>
+</ul></li>
+<li><strong>Tipo de estudo</strong>: <!-- <div style="position: relative; left:0px; top: -15px;"> -->
+<ul>
+<li>Descritivo <br></li>
+<li>Série Temporal <!-- </div> --></li>
+</ul></li>
+</ul>
+<section id="séries-temporais" class="level2">
+<h2 class="anchored" data-anchor-id="séries-temporais">Séries Temporais</h2>
+<p>De acordo com (MORETTIN; TOLOI, 2018), uma série temporal é qualquer conjunto de observações ordenadas no tempo.</p>
+<p>Alguns exemplos:</p>
+<ul>
+<li>Valores diários de poluição na cidade de São Paulo;</li>
+<li>Valores mensais de temperatura na cidade de Cananéia-SP;</li>
+<li>Precipitação atmosférica anual na cidade de Fortaleza;</li>
+<li>Registro de marés no porto de Santos;</li>
+<li>Índices diários da Bolsa de Valores de São Paulo; <!-- -- --> <!--   - Número de casos de alguma doença no Paraná; --></li>
+<li>etc.</li>
+</ul>
+<p>(MORETTIN; TOLOI, 2018)</p>
+</section>
+<section id="descrição-da-doença" class="level2">
+<h2 class="anchored" data-anchor-id="descrição-da-doença">Descrição da doença</h2>
+<ul>
+<li>Dengue é uma doença causada por vírus transmitido pelo mosquito <em>Aedes aegypti</em>;</li>
+<li>O mosquito também pode transmitir chikungunya e zika.</li>
+</ul>
+<p>(MINISTÉRIO DA SAÚDE, 2024a)</p>
+<p><strong>Prevenção:</strong></p>
+<p>Em termos de ações a serem tomadas para evitar ou dificultar o ciclo de reprodução do mosquito, deve-se, por exemplo:</p>
+<ul>
+<li>Certificar que caixa d’água e outros reservatórios de água estejam devidamente tampados;</li>
+<li>Retirar folhas ou outro tipo de sujeira que pode gerar acúmulo de água nas calhas;</li>
+<li>Manter limpas as piscinas;</li>
+<li>Guardar pneus em locais cobertos;</li>
+<li>Chamar um especialista ou agente de saúde, se necessário;
+<ul>
+<li>Aplicação e realização de tratamento com larvicida em grandes depósitos de água utilizados para consumo humano, por exemplo;</li>
+</ul></li>
+<li>etc.</li>
+</ul>
+<!--
+- Evitar manter água parada em ambientes que o mosquito teria acesso;
+- Em ambientes em que há a reprodução do mosquito, fazer a limpeza dos locais e eliminação das larvas;
+-->
+<p>(MINISTÉRIO DA SAÚDE, 2024a)</p>
+<!-- **Sorotipos:** -->
+<!--     |- DENV1 -->
+<!--     |- DENV2 -->
+<!--     |- DENV3 -->
+<!--     |- DENV4 -->
+<!-- **Tipos:** -->
+<!--     |- Dengue clássica -->
+<!--         |- DENV1 -->
+<!--         |- DENV2 -->
+<!--         |- DENV3 -->
+<!--         |- DENV4 -->
+<!--     |- Síndrome do choque da dengue -->
+<!--         |- DENV1 -->
+<!--         |- DENV2 -->
+<!--         |- DENV3 -->
+<!--         |- DENV4 -->
+<!--     |- Dengue hemorrágica -->
+<!--         |- DENV1 -->
+<!--         |- DENV2 -->
+<!--         |- DENV3 -->
+<!--         |- DENV4 -->
+<!-- ## Descrição da doença -->
+<!-- <div style="position: relative; left:0px; top: -30px;"> -->
+<p><strong>Sintomas:</strong></p>
+<ul>
+<li>Na presença de sintomas, tem-se início repentino de febre alta (entre 39° C e 40° C) associada com:
+<ul>
+<li>Dor de cabeça;</li>
+<li>Prostração;</li>
+<li>Dores musculares e/ou articulares e dor atrás dos olhos.</li>
+</ul></li>
+</ul>
+<p>Com o declínio da febre, sinais de alarme podem estar presentes e marcar início da piora do indivíduo. Assim, outros sintomas podem aparecer.</p>
+<p>Além disso, a doença pode progredir para formas graves que podem evoluir para o óbito do indivíduo.</p>
+<p>(MINISTÉRIO DA SAÚDE, 2024b)</p>
+<p><strong>Diagnóstico:</strong></p>
+<ul>
+<li>Não há necessidade de fazer exames específicos para o tratamento da doença, já que o reconhecimento é baseado nas manifestações clínicas apresentadas pelo indivíduo.</li>
+<li>No entanto, para apoiar o diagnóstico clínico podem ser realizados exames laboratoriais até o 5° dia de início da doença para identificação do vírus, além de pesquisa de anticorpos a partir do 6° dia de início da doença.</li>
+</ul>
+<p>(MINISTÉRIO DA SAÚDE, 2024b)</p>
+<!-- <div> -->
+<!-- ## Descrição da doença -->
+<p><strong>Tratamento:</strong></p>
+<ul>
+<li>Hidratação e ingestão de líquidos;</li>
+<li>Repouso;</li>
+<li>Não se automedicar e procurar imediatamente o serviço de urgência em caso de sangramentos ou surgimento de pelo menos um sinal de alarme;</li>
+<li>Retorno para reavaliação clínica conforme orientação médica;</li>
+</ul>
+<!-- - Remédios para febre e dor. -->
+<p>(MINISTÉRIO DA SAÚDE, 2024b)</p>
+</section>
+</section>
+<section id="material-e-metodologia" class="level1">
+<h1>Material e Metodologia</h1>
+<section id="material" class="level2">
+<h2 class="anchored" data-anchor-id="material">Material</h2>
+<section id="conjunto-de-dados" class="level3">
+<h3 class="anchored" data-anchor-id="conjunto-de-dados">Conjunto de Dados</h3>
+<ul>
+<li>Conjunto de dados extraídos de API Infodengue (CODECO et al., 2018)</li>
+<li>Histórico de 2017-12-31 até 2024-10-26 (Extração feita em 2024-11-05)</li>
+<li>Dados compilados semanalmente</li>
+</ul>
+</section>
+</section>
+<section id="metodologia" class="level2">
+<h2 class="anchored" data-anchor-id="metodologia">Metodologia</h2>
+<section id="análise-descritiva-e-exploratória-dos-dados" class="level3">
+<h3 class="anchored" data-anchor-id="análise-descritiva-e-exploratória-dos-dados">Análise Descritiva e Exploratória dos Dados</h3>
+<ul>
+<li>Cálculo de estatísticas descritivas (tabela de frequências, medidas de td central, dispersão)</li>
+<li>Gráficos</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="resultados" class="level1">
+<h1>Resultados</h1>
+<section id="gráfico-da-série" class="level2">
+<h2 class="anchored" data-anchor-id="gráfico-da-série">Gráfico da série</h2>
+<iframe src="g0_pl.html" width="550," height="450">
+</iframe>
+<ul>
+<li><p>O número total de observações para o conjunto de dados que considera todas as UFs é igual a <strong>1952438</strong> e o número de observações agrupado por data_iniSE é igual a <strong>356</strong>.</p></li>
+<li><p>Os números mínimo e máximo de casos de dengue são iguais a <strong>3111</strong> e <strong>626429</strong> em 26/12/2021 e 17/03/2024, respectivamente.</p></li>
+<li><p>Os números médio e mediano de casos de dengue são iguais a <strong>57595,98</strong> e <strong>20036,50</strong>, respectivamente, evidenciando comportamento assimétrico em termos de distribuição.</p></li>
+<li><p>O número de <em>topos</em>* é igual a 6 (<span class="math inline">\(\text{Topo}_1 &gt; \text{Topo}_2 &gt; \text{Topo}_3 &lt; \text{Topo}_4 &lt; \text{Topo}_5 &lt; \text{Topo}_6\)</span>) e ocorreram entre os meses de <strong>março</strong> e <strong>maio</strong> (<strong>primeiro</strong> e <strong>segundo</strong> trimestres) em todos os anos do histórico dos dados.</p></li>
+<li><p>Ao avaliarmos as quantidades de casos por ano, o número de casos ocorridos em 2024 é muito maior em comparação com outros anos. Isso pode ser verificado em todo o histórico por ano ou no histórico somente dos <em>topos</em> por ano. Por exemplo, ao se comparar o <em>topo</em> do ano de 2024 (17/03/2024) com o <em>topo</em> do ano de 2023 (09/04/2023), tem-se um acréscimo de <strong>232,8%</strong>. O <em>topo</em> do ano de 2024 (17/03/2024) em relação a média geral de todos os casos representa um acréscimo de <strong>987,62%</strong>.</p></li>
+<li><p>Os testes de normalidade de Jarque-Bera, teste t de student para a média e teste de Ljung-Box (lag=10) tiveram p-valores menores de que 5%, o que significa que há evidências para dizer que os dados não seguem uma distribuição normal, que a média é diferente de zero e que há autocorrelação ou dependência na série temporal a um nível de significância de 5%.</p></li>
+</ul>
+<p>* <strong>topo:</strong> caracteriza-se como máximo local por ano selecionado em modelo de regressão ou máximo de todo o histórico dos dados.</p>
+</section>
+</section>
+<section id="conclusão" class="level1">
+<h1>Conclusão</h1>
+<p>Esse estudo foi realizado com o objetivo de descrever a doença da dengue e buscar fontes de dados relacionados a doença.</p>
+<p>Incentiva-se o uso da API para obtenção dos dados e a utilização de métodos estatísticos para descrever com mais detalhes componentes da série temporal tais como tendência, sazonalidade, autocorrelação, etc.</p>
+</section>
+<section id="referências" class="level1">
+<h1>Referências</h1>
+<!-- BOX, G. E. P. et al. Time Series Analysis: Forecasting and Control. 5. ed. [S.l.]: John Wiley and Sons Inc., 2015. ISBN 1118675029. -->
+<!-- CHARNET, Reinaldo et al. Análise de modelos de regressão linear com aplicações. Campinas, São Paulo, Unicamp, 2008. -->
+<p>CODECO, C.; COELHO, F.; CRUZ, O.; OLIVEIRA, S.; CASTRO, T.; BASTOS, L. Infodengue: A nowcasting system for the surveillance of arboviruses in brazil. Revue d’Épidémiologie et de Santé Publique, v. 66, p.&nbsp;S386, 2018. ISSN 0398-7620. Disponível em: <a href="http://www.sciencedirect.com/science/article/pii/S0398762018311088" class="uri">http://www.sciencedirect.com/science/article/pii/S0398762018311088</a>.</p>
+<!-- James, G., Witten, D., Hastie, T., &Tibshirani, R. (2014). An Introduction to Statistical Learning: With Applications in R Springer Publishing Company. -->
+<!-- McCULLAGH, P. e NELDER, J. A. (1989). Generalized Linear Models, Second Edition. London:Chapman and Hall. -->
+<p>MINISTÉRIO DA SAÚDE. Aedes aegypti. [S.l.], 2024. Disponível em: <a href="https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/a/aedes-aegypti" class="uri">https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/a/aedes-aegypti</a>. Acesso em: 05 dez. 2024.</p>
+<p>MINISTÉRIO DA SAÚDE. Dengue. [S.l.], 2024. Disponível em: <a href="https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/d/dengue" class="uri">https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/d/dengue</a>. Acesso em: 05 dez. 2024.</p>
+<p>MORETTIN, P. A.; TOLOI, C. Análise de séries temporais: modelos lineares univariados 3. ed.&nbsp;[S.l.]: Blucher, 2018. ISBN 9788521213529.</p>
+<!-- PAULA, Gilberto Alvarenga. Modelos de regressão: com apoio computacional. São Paulo: IME-USP, 2011 -->
+<p>R CORE TEAM. R: A Language and Environment for Statistical Computing. Vienna, Austria, 2019. Disponível em: <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
+<p>WORLD HEALTH ORGANIZATION. Dengue and severe dengue. [S.l.], 2024. Disponível em: <a href="https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue" class="uri">https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue</a>. Acesso em: 05 dez. 2024.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

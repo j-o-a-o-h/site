@@ -8,9 +8,9 @@
 
 <meta name="author" content="João Hneda">
 <meta name="dcterms.date" content="2026-11-12">
-<meta name="description" content="Resultados no contexto de dados de aluguéis em Monique">
+<meta name="description" content="Resultados no contexto de dados de aluguéis em Munique">
 
-<title>(Relatório em Python) - Aplicação no contexto de dados de aluguéis em Monique – João Hneda</title>
+<title>(Relatório em Python) - Aplicação no contexto de dados de aluguéis em Munique – João Hneda</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -114,8 +114,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="(Relatório em Python) - Aplicação no contexto de dados de aluguéis em Monique – João Hneda">
-<meta property="og:description" content="Resultados no contexto de dados de aluguéis em Monique">
+<meta property="og:title" content="(Relatório em Python) - Aplicação no contexto de dados de aluguéis em Munique – João Hneda">
+<meta property="og:description" content="Resultados no contexto de dados de aluguéis em Munique">
 <meta property="og:image" content="imagens/statsmodels.jpg">
 <meta property="og:site_name" content="João Hneda">
 <meta property="og:locale" content="en_US">
@@ -157,11 +157,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">(Relatório em Python) - Aplicação no contexto de dados de aluguéis em Monique</h1>
+      <h1 class="title">(Relatório em Python) - Aplicação no contexto de dados de aluguéis em Munique</h1>
             <p class="subtitle lead">Desenvolvimento de Relatório em Python</p>
                   <div>
         <div class="description">
-          Resultados no contexto de dados de aluguéis em Monique
+          Resultados no contexto de dados de aluguéis em Munique
         </div>
       </div>
                           <div class="quarto-categories">
@@ -351,7 +351,7 @@ Model Family:                Gaussian   Df Model:                            5
 Link Function:               Identity   Scale:                          95449.
 Method:                          IRLS   Log-Likelihood:                -14080.
 Date:                sex, 13 nov 2026   Deviance:                   1.8737e+08
-Time:                        18:15:23   Pearson chi2:                 1.87e+08
+Time:                        18:46:13   Pearson chi2:                 1.87e+08
 No. Iterations:                     3   Pseudo R-squ. (CS):             0.3978
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -371,7 +371,7 @@ A              1.4808      0.268      5.532      0.000       0.956       2.005
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x<span class="op">=</span><span class="st">"fv"</span>,y<span class="op">=</span><span class="st">"resid"</span>,data<span class="op">=</span>residuals)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;seaborn.axisgrid.JointGrid object at 0x000001C44B52EB10&gt;</code></pre>
+<pre><code>&lt;seaborn.axisgrid.JointGrid object at 0x000001CFF4BE8B90&gt;</code></pre>
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -435,7 +435,7 @@ Model Family:                   Gamma   Df Model:                            5
 Link Function:                    Log   Scale:                         0.13779
 Method:                          IRLS   Log-Likelihood:                -13882.
 Date:                sex, 13 nov 2026   Deviance:                       282.57
-Time:                        18:15:27   Pearson chi2:                     270.
+Time:                        18:46:17   Pearson chi2:                     270.
 No. Iterations:                    11   Pseudo R-squ. (CS):             0.4177
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -455,7 +455,7 @@ A              0.0015      0.000      4.695      0.000       0.001       0.002
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x<span class="op">=</span><span class="st">"fv"</span>,y<span class="op">=</span><span class="st">"resid"</span>,data<span class="op">=</span>residuals1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;seaborn.axisgrid.JointGrid object at 0x000001C44B628500&gt;</code></pre>
+<pre><code>&lt;seaborn.axisgrid.JointGrid object at 0x000001CFF4EA89B0&gt;</code></pre>
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -519,7 +519,7 @@ Model Family:         InverseGaussian   Df Model:                            5
 Link Function:                    Log   Scale:                      0.00018669
 Method:                          IRLS   Log-Likelihood:                -14015.
 Date:                sex, 13 nov 2026   Deviance:                      0.44597
-Time:                        18:15:31   Pearson chi2:                    0.366
+Time:                        18:46:20   Pearson chi2:                    0.366
 No. Iterations:                    15   Pseudo R-squ. (CS):             0.4014
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -539,7 +539,7 @@ A              0.0013      0.000      3.889      0.000       0.001       0.002
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x<span class="op">=</span><span class="st">"fv"</span>,y<span class="op">=</span><span class="st">"resid"</span>,data<span class="op">=</span>residuals2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;seaborn.axisgrid.JointGrid object at 0x000001C44B785310&gt;</code></pre>
+<pre><code>&lt;seaborn.axisgrid.JointGrid object at 0x000001CFF4E4C410&gt;</code></pre>
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -597,7 +597,7 @@ Model Family:                   Gamma   Df Model:                            5
 Link Function:                    Log   Scale:                         0.13779
 Method:                          IRLS   Log-Likelihood:                -13882.
 Date:                sex, 13 nov 2026   Deviance:                       282.57
-Time:                        18:15:33   Pearson chi2:                     270.
+Time:                        18:46:22   Pearson chi2:                     270.
 No. Iterations:                    11   Pseudo R-squ. (CS):             0.4177
 Covariance Type:            nonrobust                                         
 ==============================================================================

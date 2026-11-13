@@ -116,7 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="(Relatório em Python) - Aplicação no contexto de dados de aluguéis em Monique – João Hneda">
 <meta property="og:description" content="Resultados no contexto de dados de aluguéis em Monique">
-<meta property="og:image" content="imagens/statsmodels.png">
+<meta property="og:image" content="imagens/statsmodels.jpg">
 <meta property="og:site_name" content="João Hneda">
 <meta property="og:locale" content="en_US">
 </head>
@@ -264,7 +264,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>      pn.xlab(<span class="st">'Aluguel mensal menos o </span><span class="ch">\n</span><span class="st"> custo utilitário do imóvel'</span>)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>y1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;plotnine.ggplot.ggplot object at 0x000002434B4379E0&gt;</code></pre>
+<pre><code>&lt;plotnine.ggplot.ggplot object at 0x0000024659528080&gt;</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
@@ -273,7 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>      pn.xlab(<span class="st">'Área Construída'</span>)</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>p1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;plotnine.ggplot.ggplot object at 0x000002434A6CC0E0&gt;</code></pre>
+<pre><code>&lt;plotnine.ggplot.ggplot object at 0x000002465944DE50&gt;</code></pre>
 </div>
 </div>
 <p>O valor do aluguel parece aumentar conforme a área do imóvel. Além disso, observa-se também que a variação dos preços de aluguel aumenta conforme a área.</p>
@@ -283,7 +283,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>      pn.xlab(<span class="st">'Ano de Construção'</span>)</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;plotnine.ggplot.ggplot object at 0x000002434B0E76B0&gt;</code></pre>
+<pre><code>&lt;plotnine.ggplot.ggplot object at 0x0000024659584CE0&gt;</code></pre>
 </div>
 </div>
 <p>Com relação ao ano de construção, não parece haver uma alteração, em termos de valor mediano, até o ano de 1960. A partir de então nota-se um ligeiro aumento.</p>
@@ -293,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    pn.xlab(<span class="st">'Se imóvel tem (0) </span><span class="ch">\n</span><span class="st"> ou não (1) aquecimento central'</span>)</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>p3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;plotnine.ggplot.ggplot object at 0x000002434B724110&gt;</code></pre>
+<pre><code>&lt;plotnine.ggplot.ggplot object at 0x0000024659619A60&gt;</code></pre>
 </div>
 </div>
 <p>Imóveis com aquecimento central (H=0) apresentam maior mediana para os preços de aluguel em relação aos que não tem (H=1). A distribuição dos valores de aluguel, em ambos os grupos, apresenta assimetria (á direita). Além disso, a variação é maior no grupo com maior mediana.</p>
@@ -303,7 +303,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    pn.xlab(<span class="st">'Locação imóvel abaixo_média, </span><span class="ch">\n</span><span class="st"> na média ou acima_média.'</span>)</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>p4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;plotnine.ggplot.ggplot object at 0x000002434B73D790&gt;</code></pre>
+<pre><code>&lt;plotnine.ggplot.ggplot object at 0x0000024659163AA0&gt;</code></pre>
 </div>
 </div>
 <p>Finalmente, os preços de aluguel apresentam maior mediana para a região “acima da média”, seguida pelas regiões “na média” e “abaixo da média”. Nota-se, novamente, assimetria nas distribuições dos preços de aluguel em cada grupo e variância não constante.</p>
@@ -331,7 +331,7 @@ Model Family:                Gaussian   Df Model:                            5
 Link Function:               Identity   Scale:                          95449.
 Method:                          IRLS   Log-Likelihood:                -14080.
 Date:                sex, 13 nov 2026   Deviance:                   1.8737e+08
-Time:                        17:56:08   Pearson chi2:                 1.87e+08
+Time:                        18:06:13   Pearson chi2:                 1.87e+08
 No. Iterations:                     3   Pseudo R-squ. (CS):             0.3978
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -351,7 +351,7 @@ A              1.4808      0.268      5.532      0.000       0.956       2.005
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x<span class="op">=</span><span class="st">"fv"</span>,y<span class="op">=</span><span class="st">"resid"</span>,data<span class="op">=</span>residuals)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;seaborn.axisgrid.JointGrid object at 0x000002435273E060&gt;</code></pre>
+<pre><code>&lt;seaborn.axisgrid.JointGrid object at 0x0000024660622030&gt;</code></pre>
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -415,7 +415,7 @@ Model Family:                   Gamma   Df Model:                            5
 Link Function:                    Log   Scale:                         0.13779
 Method:                          IRLS   Log-Likelihood:                -13882.
 Date:                sex, 13 nov 2026   Deviance:                       282.57
-Time:                        17:56:13   Pearson chi2:                     270.
+Time:                        18:06:19   Pearson chi2:                     270.
 No. Iterations:                    11   Pseudo R-squ. (CS):             0.4177
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -435,7 +435,7 @@ A              0.0015      0.000      4.695      0.000       0.001       0.002
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x<span class="op">=</span><span class="st">"fv"</span>,y<span class="op">=</span><span class="st">"resid"</span>,data<span class="op">=</span>residuals1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;seaborn.axisgrid.JointGrid object at 0x0000024352A57EF0&gt;</code></pre>
+<pre><code>&lt;seaborn.axisgrid.JointGrid object at 0x00000246609556A0&gt;</code></pre>
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -499,7 +499,7 @@ Model Family:         InverseGaussian   Df Model:                            5
 Link Function:                    Log   Scale:                      0.00018669
 Method:                          IRLS   Log-Likelihood:                -14015.
 Date:                sex, 13 nov 2026   Deviance:                      0.44597
-Time:                        17:56:17   Pearson chi2:                    0.366
+Time:                        18:06:23   Pearson chi2:                    0.366
 No. Iterations:                    15   Pseudo R-squ. (CS):             0.4014
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -519,7 +519,7 @@ A              0.0013      0.000      3.889      0.000       0.001       0.002
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x<span class="op">=</span><span class="st">"fv"</span>,y<span class="op">=</span><span class="st">"resid"</span>,data<span class="op">=</span>residuals2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;seaborn.axisgrid.JointGrid object at 0x0000024352B2A6F0&gt;</code></pre>
+<pre><code>&lt;seaborn.axisgrid.JointGrid object at 0x0000024660B9A8D0&gt;</code></pre>
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -577,7 +577,7 @@ Model Family:                   Gamma   Df Model:                            5
 Link Function:                    Log   Scale:                         0.13779
 Method:                          IRLS   Log-Likelihood:                -13882.
 Date:                sex, 13 nov 2026   Deviance:                       282.57
-Time:                        17:56:20   Pearson chi2:                     270.
+Time:                        18:06:27   Pearson chi2:                     270.
 No. Iterations:                    11   Pseudo R-squ. (CS):             0.4177
 Covariance Type:            nonrobust                                         
 ==============================================================================

@@ -262,48 +262,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>y1 <span class="op">=</span> pn.ggplot(mapping<span class="op">=</span>pn.aes(x<span class="op">=</span><span class="st">'R'</span>),data<span class="op">=</span>rent) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>      pn.geom_histogram(fill<span class="op">=</span><span class="st">'#0c0cc08b'</span>,color<span class="op">=</span><span class="st">'black'</span>) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>      pn.xlab(<span class="st">'Aluguel mensal menos o </span><span class="ch">\n</span><span class="st"> custo utilitário do imóvel'</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>y1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;plotnine.ggplot.ggplot object at 0x0000024659528080&gt;</code></pre>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>y1.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="desenvolvimento_inicial_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="614"></p>
+</figure>
+</div>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="op">=</span> pn.ggplot(mapping<span class="op">=</span>pn.aes(x<span class="op">=</span><span class="st">"Fl"</span>,y<span class="op">=</span><span class="st">"R"</span>),data<span class="op">=</span>rent) <span class="op">+</span> <span class="op">\</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>      pn.geom_point(color<span class="op">=</span><span class="st">'blue'</span>) <span class="op">+</span> <span class="op">\</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>      pn.xlab(<span class="st">'Área Construída'</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>p1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;plotnine.ggplot.ggplot object at 0x000002465944DE50&gt;</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="op">=</span> pn.ggplot(mapping<span class="op">=</span>pn.aes(x<span class="op">=</span><span class="st">"Fl"</span>,y<span class="op">=</span><span class="st">"R"</span>),data<span class="op">=</span>rent) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>      pn.geom_point(color<span class="op">=</span><span class="st">'blue'</span>) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>      pn.xlab(<span class="st">'Área Construída'</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>p1.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="desenvolvimento_inicial_files/figure-html/unnamed-chunk-7-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="614"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>O valor do aluguel parece aumentar conforme a área do imóvel. Além disso, observa-se também que a variação dos preços de aluguel aumenta conforme a área.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>p2<span class="op">=</span> pn.ggplot(mapping<span class="op">=</span>pn.aes(x<span class="op">=</span><span class="st">"A"</span>,y<span class="op">=</span><span class="st">"R"</span>),data<span class="op">=</span>rent) <span class="op">+</span> <span class="op">\</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>      pn.geom_point(color<span class="op">=</span><span class="st">'blue'</span>) <span class="op">+</span> <span class="op">\</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>      pn.xlab(<span class="st">'Ano de Construção'</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;plotnine.ggplot.ggplot object at 0x0000024659584CE0&gt;</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>p2<span class="op">=</span> pn.ggplot(mapping<span class="op">=</span>pn.aes(x<span class="op">=</span><span class="st">"A"</span>,y<span class="op">=</span><span class="st">"R"</span>),data<span class="op">=</span>rent) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>      pn.geom_point(color<span class="op">=</span><span class="st">'blue'</span>) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>      pn.xlab(<span class="st">'Ano de Construção'</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>p2.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="desenvolvimento_inicial_files/figure-html/unnamed-chunk-8-5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="614"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Com relação ao ano de construção, não parece haver uma alteração, em termos de valor mediano, até o ano de 1960. A partir de então nota-se um ligeiro aumento.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>p3<span class="op">=</span>pn.ggplot(mapping<span class="op">=</span>pn.aes(x<span class="op">=</span><span class="st">"H"</span>,y<span class="op">=</span><span class="st">"R"</span>),data<span class="op">=</span>rent) <span class="op">+</span> <span class="op">\</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    pn.geom_boxplot(fill<span class="op">=</span><span class="st">'lightblue'</span>) <span class="op">+</span> <span class="op">\</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    pn.xlab(<span class="st">'Se imóvel tem (0) </span><span class="ch">\n</span><span class="st"> ou não (1) aquecimento central'</span>)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>p3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;plotnine.ggplot.ggplot object at 0x0000024659619A60&gt;</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>p3<span class="op">=</span>pn.ggplot(mapping<span class="op">=</span>pn.aes(x<span class="op">=</span><span class="st">"H"</span>,y<span class="op">=</span><span class="st">"R"</span>),data<span class="op">=</span>rent) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    pn.geom_boxplot(fill<span class="op">=</span><span class="st">'lightblue'</span>) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    pn.xlab(<span class="st">'Se imóvel tem (0) </span><span class="ch">\n</span><span class="st"> ou não (1) aquecimento central'</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>p3.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="desenvolvimento_inicial_files/figure-html/unnamed-chunk-9-7.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="614"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Imóveis com aquecimento central (H=0) apresentam maior mediana para os preços de aluguel em relação aos que não tem (H=1). A distribuição dos valores de aluguel, em ambos os grupos, apresenta assimetria (á direita). Além disso, a variação é maior no grupo com maior mediana.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>p4<span class="op">=</span>pn.ggplot(mapping<span class="op">=</span>pn.aes(x<span class="op">=</span><span class="st">"loc"</span>,y<span class="op">=</span><span class="st">"R"</span>),data<span class="op">=</span>rent) <span class="op">+</span> <span class="op">\</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    pn.geom_boxplot(fill<span class="op">=</span><span class="st">'lightblue'</span>) <span class="op">+</span> <span class="op">\</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    pn.xlab(<span class="st">'Locação imóvel abaixo_média, </span><span class="ch">\n</span><span class="st"> na média ou acima_média.'</span>)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>p4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;plotnine.ggplot.ggplot object at 0x0000024659163AA0&gt;</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>p4<span class="op">=</span>pn.ggplot(mapping<span class="op">=</span>pn.aes(x<span class="op">=</span><span class="st">"loc"</span>,y<span class="op">=</span><span class="st">"R"</span>),data<span class="op">=</span>rent) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    pn.geom_boxplot(fill<span class="op">=</span><span class="st">'lightblue'</span>) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    pn.xlab(<span class="st">'Locação imóvel abaixo_média, </span><span class="ch">\n</span><span class="st"> na média ou acima_média.'</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>p4.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="desenvolvimento_inicial_files/figure-html/unnamed-chunk-10-9.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="614"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Finalmente, os preços de aluguel apresentam maior mediana para a região “acima da média”, seguida pelas regiões “na média” e “abaixo da média”. Nota-se, novamente, assimetria nas distribuições dos preços de aluguel em cada grupo e variância não constante.</p>
@@ -311,17 +331,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="resposta---v.a.-normal" class="level1">
 <h1>Resposta - v.a. Normal</h1>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#mod = sm.OLS(y,X)</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>mod <span class="op">=</span> sm.GLM(y,X,family<span class="op">=</span>sm.families.Gaussian(link<span class="op">=</span>sm.families.links.Identity()))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#mod = sm.OLS(y,X)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>mod <span class="op">=</span> sm.GLM(y,X,family<span class="op">=</span>sm.families.Gaussian(link<span class="op">=</span>sm.families.links.Identity()))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> mod.fit()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> mod.fit()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res.summary())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res.summary())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                 Generalized Linear Model Regression Results                  
 ==============================================================================
@@ -331,7 +351,7 @@ Model Family:                Gaussian   Df Model:                            5
 Link Function:               Identity   Scale:                          95449.
 Method:                          IRLS   Log-Likelihood:                -14080.
 Date:                sex, 13 nov 2026   Deviance:                   1.8737e+08
-Time:                        18:06:13   Pearson chi2:                 1.87e+08
+Time:                        18:15:23   Pearson chi2:                 1.87e+08
 No. Iterations:                     3   Pseudo R-squ. (CS):             0.3978
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -347,46 +367,46 @@ A              1.4808      0.268      5.532      0.000       0.956       2.005
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>residuals <span class="op">=</span> pd.DataFrame({<span class="st">"fv"</span>:res.fittedvalues,<span class="st">"resid"</span>:res.resid_response})</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x<span class="op">=</span><span class="st">"fv"</span>,y<span class="op">=</span><span class="st">"resid"</span>,data<span class="op">=</span>residuals)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>residuals <span class="op">=</span> pd.DataFrame({<span class="st">"fv"</span>:res.fittedvalues,<span class="st">"resid"</span>:res.resid_response})</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x<span class="op">=</span><span class="st">"fv"</span>,y<span class="op">=</span><span class="st">"resid"</span>,data<span class="op">=</span>residuals)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;seaborn.axisgrid.JointGrid object at 0x0000024660622030&gt;</code></pre>
+<pre><code>&lt;seaborn.axisgrid.JointGrid object at 0x000001C44B52EB10&gt;</code></pre>
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="desenvolvimento_inicial_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+<p><img src="desenvolvimento_inicial_files/figure-html/unnamed-chunk-15-11.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>resid <span class="op">=</span> res.resid_deviance.copy()</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>resid_std <span class="op">=</span> stats.zscore(resid)</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>ax.hist(resid_std, bins<span class="op">=</span><span class="dv">25</span>)</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Histogram of standardized deviance residuals"</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>resid <span class="op">=</span> res.resid_deviance.copy()</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>resid_std <span class="op">=</span> stats.zscore(resid)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>ax.hist(resid_std, bins<span class="op">=</span><span class="dv">25</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Histogram of standardized deviance residuals"</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="desenvolvimento_inicial_files/figure-html/unnamed-chunk-16-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="desenvolvimento_inicial_files/figure-html/unnamed-chunk-16-13.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels <span class="im">import</span> graphics</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>graphics.gofplots.qqplot(resid_std, line<span class="op">=</span><span class="st">"r"</span>).show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels <span class="im">import</span> graphics</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>graphics.gofplots.qqplot(resid_std, line<span class="op">=</span><span class="st">"r"</span>).show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="desenvolvimento_inicial_files/figure-html/unnamed-chunk-17-5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="desenvolvimento_inicial_files/figure-html/unnamed-chunk-17-15.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -399,13 +419,13 @@ A              1.4808      0.268      5.532      0.000       0.956       2.005
 <section id="resposta---v.a.-gama" class="level1">
 <h1>Resposta - v.a. Gama</h1>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>mod1 <span class="op">=</span> sm.GLM(y,X,family<span class="op">=</span>sm.families.Gamma(link<span class="op">=</span>sm.families.links.Log()))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>mod1 <span class="op">=</span> sm.GLM(y,X,family<span class="op">=</span>sm.families.Gamma(link<span class="op">=</span>sm.families.links.Log()))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>res1 <span class="op">=</span> mod1.fit()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>res1 <span class="op">=</span> mod1.fit()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res1.summary())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res1.summary())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                 Generalized Linear Model Regression Results                  
 ==============================================================================
@@ -415,7 +435,7 @@ Model Family:                   Gamma   Df Model:                            5
 Link Function:                    Log   Scale:                         0.13779
 Method:                          IRLS   Log-Likelihood:                -13882.
 Date:                sex, 13 nov 2026   Deviance:                       282.57
-Time:                        18:06:19   Pearson chi2:                     270.
+Time:                        18:15:27   Pearson chi2:                     270.
 No. Iterations:                    11   Pseudo R-squ. (CS):             0.4177
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -431,46 +451,46 @@ A              0.0015      0.000      4.695      0.000       0.001       0.002
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>residuals1 <span class="op">=</span> pd.DataFrame({<span class="st">"fv"</span>:res1.fittedvalues,<span class="st">"resid"</span>:res1.resid_response})</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x<span class="op">=</span><span class="st">"fv"</span>,y<span class="op">=</span><span class="st">"resid"</span>,data<span class="op">=</span>residuals1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>residuals1 <span class="op">=</span> pd.DataFrame({<span class="st">"fv"</span>:res1.fittedvalues,<span class="st">"resid"</span>:res1.resid_response})</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x<span class="op">=</span><span class="st">"fv"</span>,y<span class="op">=</span><span class="st">"resid"</span>,data<span class="op">=</span>residuals1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;seaborn.axisgrid.JointGrid object at 0x00000246609556A0&gt;</code></pre>
+<pre><code>&lt;seaborn.axisgrid.JointGrid object at 0x000001C44B628500&gt;</code></pre>
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="desenvolvimento_inicial_files/figure-html/unnamed-chunk-21-7.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+<p><img src="desenvolvimento_inicial_files/figure-html/unnamed-chunk-21-17.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>resid1 <span class="op">=</span> res1.resid_deviance.copy()</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>resid_std1 <span class="op">=</span> stats.zscore(resid1)</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>ax.hist(resid_std1, bins<span class="op">=</span><span class="dv">25</span>)</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Histogram of standardized deviance residuals"</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>resid1 <span class="op">=</span> res1.resid_deviance.copy()</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>resid_std1 <span class="op">=</span> stats.zscore(resid1)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>ax.hist(resid_std1, bins<span class="op">=</span><span class="dv">25</span>)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Histogram of standardized deviance residuals"</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="desenvolvimento_inicial_files/figure-html/unnamed-chunk-22-9.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="desenvolvimento_inicial_files/figure-html/unnamed-chunk-22-19.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels <span class="im">import</span> graphics</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>graphics.gofplots.qqplot(resid_std1, line<span class="op">=</span><span class="st">"r"</span>).show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels <span class="im">import</span> graphics</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>graphics.gofplots.qqplot(resid_std1, line<span class="op">=</span><span class="st">"r"</span>).show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="desenvolvimento_inicial_files/figure-html/unnamed-chunk-23-11.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="desenvolvimento_inicial_files/figure-html/unnamed-chunk-23-21.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -483,13 +503,13 @@ A              0.0015      0.000      4.695      0.000       0.001       0.002
 <section id="resposta---v.a.-normal-inversa" class="level1">
 <h1>Resposta - v.a. Normal Inversa</h1>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>mod2 <span class="op">=</span> sm.GLM(y,X,family<span class="op">=</span>sm.families.InverseGaussian(link<span class="op">=</span>sm.families.links.Log()))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>mod2 <span class="op">=</span> sm.GLM(y,X,family<span class="op">=</span>sm.families.InverseGaussian(link<span class="op">=</span>sm.families.links.Log()))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>res2 <span class="op">=</span> mod2.fit()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>res2 <span class="op">=</span> mod2.fit()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res2.summary())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res2.summary())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                 Generalized Linear Model Regression Results                  
 ==============================================================================
@@ -499,7 +519,7 @@ Model Family:         InverseGaussian   Df Model:                            5
 Link Function:                    Log   Scale:                      0.00018669
 Method:                          IRLS   Log-Likelihood:                -14015.
 Date:                sex, 13 nov 2026   Deviance:                      0.44597
-Time:                        18:06:23   Pearson chi2:                    0.366
+Time:                        18:15:31   Pearson chi2:                    0.366
 No. Iterations:                    15   Pseudo R-squ. (CS):             0.4014
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -515,46 +535,46 @@ A              0.0013      0.000      3.889      0.000       0.001       0.002
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>residuals2 <span class="op">=</span> pd.DataFrame({<span class="st">"fv"</span>:res2.fittedvalues,<span class="st">"resid"</span>:res2.resid_response})</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x<span class="op">=</span><span class="st">"fv"</span>,y<span class="op">=</span><span class="st">"resid"</span>,data<span class="op">=</span>residuals2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>residuals2 <span class="op">=</span> pd.DataFrame({<span class="st">"fv"</span>:res2.fittedvalues,<span class="st">"resid"</span>:res2.resid_response})</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x<span class="op">=</span><span class="st">"fv"</span>,y<span class="op">=</span><span class="st">"resid"</span>,data<span class="op">=</span>residuals2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;seaborn.axisgrid.JointGrid object at 0x0000024660B9A8D0&gt;</code></pre>
+<pre><code>&lt;seaborn.axisgrid.JointGrid object at 0x000001C44B785310&gt;</code></pre>
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="desenvolvimento_inicial_files/figure-html/unnamed-chunk-27-13.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+<p><img src="desenvolvimento_inicial_files/figure-html/unnamed-chunk-27-23.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>resid2 <span class="op">=</span> res2.resid_deviance.copy()</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>resid_std2 <span class="op">=</span> stats.zscore(resid2)</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>ax.hist(resid_std2, bins<span class="op">=</span><span class="dv">25</span>)</span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Histogram of standardized deviance residuals"</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>resid2 <span class="op">=</span> res2.resid_deviance.copy()</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>resid_std2 <span class="op">=</span> stats.zscore(resid2)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>ax.hist(resid_std2, bins<span class="op">=</span><span class="dv">25</span>)</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Histogram of standardized deviance residuals"</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="desenvolvimento_inicial_files/figure-html/unnamed-chunk-28-15.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="desenvolvimento_inicial_files/figure-html/unnamed-chunk-28-25.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels <span class="im">import</span> graphics</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>graphics.gofplots.qqplot(resid_std2, line<span class="op">=</span><span class="st">"r"</span>).show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels <span class="im">import</span> graphics</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>graphics.gofplots.qqplot(resid_std2, line<span class="op">=</span><span class="st">"r"</span>).show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="desenvolvimento_inicial_files/figure-html/unnamed-chunk-29-17.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="desenvolvimento_inicial_files/figure-html/unnamed-chunk-29-27.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -567,7 +587,7 @@ A              0.0013      0.000      3.889      0.000       0.001       0.002
 <section id="modelo-final" class="level1">
 <h1>Modelo final</h1>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res1.summary())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res1.summary())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                 Generalized Linear Model Regression Results                  
 ==============================================================================
@@ -577,7 +597,7 @@ Model Family:                   Gamma   Df Model:                            5
 Link Function:                    Log   Scale:                         0.13779
 Method:                          IRLS   Log-Likelihood:                -13882.
 Date:                sex, 13 nov 2026   Deviance:                       282.57
-Time:                        18:06:27   Pearson chi2:                     270.
+Time:                        18:15:33   Pearson chi2:                     270.
 No. Iterations:                    11   Pseudo R-squ. (CS):             0.4177
 Covariance Type:            nonrobust                                         
 ==============================================================================

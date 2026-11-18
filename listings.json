@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/2026-11-16-llm/desenvolvimento_inicial.html",
       "/posts/2026-11-14-digitrecognizer/desenvolvimento_inicial.html",
       "/posts/2026-11-12-aluguel/desenvolvimento_inicial.html",
       "/posts/2026-11-10-airflow/desenvolvimento_inicial.html",

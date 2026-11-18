@@ -165,7 +165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">Python</div>
+                <div class="quarto-category">R</div>
                 <div class="quarto-category">Large Language Models (LLM)</div>
                 <div class="quarto-category">Ciência de Dados</div>
                 <div class="quarto-category">Relatório</div>
@@ -234,386 +234,424 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_ollama</span>(<span class="at">model =</span> <span class="st">"qwen2.5"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Escreva uma função em R para calcular a média móvel de um vetor."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Claro! Vou mostrar como você pode escrever uma função em R para calcular a 
-média móvel de um vetor. Suponha que você queira uma média móvel simples, que é
-a média de um número fixo de elementos consecutivos.
+<pre><code>Claro! Vou lhe fornecer uma função em R que calcula a média móvel de um vetor. 
+Você pode ajustar a função conforme necessário para atender às suas 
+necessidades específicas, como o número de períodos a serem considerados na 
+média móvel.
 
-Aqui está um exemplo de função em R que calcula a média móvel para um vetor com
-um tamanho de janela fixo (por exemplo, 3):
+Aqui está um exemplo de função que calcula a média móvel simples:
 
 ```r
-# Função para calcular a média móvel
-media_movel &lt;- function(vector, window_size) {
-  # Verifica se o tamanho da janela é válido
-  if (window_size &lt; 1 || window_size &gt; length(vector)) {
-    stop("O tamanho da janela deve ser maior que 0 e menor ou igual ao 
-comprimento do vetor.")
+# Função para calcular a média móvel simples
+media_movil &lt;- function(vector, n) {
+  # Verifica se o vetor tem pelo menos n elementos
+  if (length(vector) &lt; n) {
+    stop("O vetor deve ter pelo menos n elementos.")
   }
-  
-  # Cria um vetor para armazenar os resultados
-  resultado &lt;- numeric(length(vector) - window_size + 1)
   
   # Calcula a média móvel
-  for (i in 1:length(resultado)) {
-    resultado[i] &lt;- mean(vector[i:(i + window_size - 1)])
-  }
+  media_mov &lt;- filter(vector, rep(1/n, n), sides = 1) / n
   
-  return(resultado)
+  return(media_mov)
 }
 
 # Exemplo de uso:
-vetor &lt;- c(1, 2, 3, 4, 5, 6, 7, 8, 9)
-window_size &lt;- 3
-media &lt;- media_movel(vetor, window_size)
-print(media)
+vetor &lt;- c(2, 4, 6, 8, 10, 12, 14, 16, 18, 20)
+períodos &lt;- 3
+media_mov &lt;- media_movil(vetor, períodos)
+
+print(media_mov)
 ```
 
-Neste exemplo, a função `media_movel` recebe dois argumentos:
+### Explicação:
+- **`vector`**: O vetor numérico para o qual você deseja calcular a média 
+móvel.
+- **`n`**: O número de períodos a serem considerados na média móvel.
+- **`filter`**: A função `filter` do pacote `stats` do R é usada para calcular 
+a média móvel. O parâmetro `sides = 1` significa que a média móvel é calculada 
+a partir do lado esquerdo (passado).
 
-1. `vector`: O vetor numérico que você deseja calcular a média móvel.
-2. `window_size`: O tamanho do intervalo de elementos que serão 
-média-movimentados.
+### Saída:
+Ao executar o código acima com `vetor` e `n` definidos como 3, a saída será um 
+vetor com os valores de média móvel calculados.
 
-A função verifica se o tamanho da janela é válido e cria um vetor `resultado` 
-para armazenar os valores da média móvel. Em seguida, um loop é usado para 
-calcular a média móvel para cada subvetor do tamanho especificado.
+Se você quiser uma média móvel simples sem utilizar o pacote `filter`, você 
+pode escrever a função da seguinte forma:
 
-Você pode ajustar o tamanho da janela conforme necessário para obter a média 
-móvel desejada.</code></pre>
+```r
+# Função para calcular a média móvel simples sem usar filter
+media_movil &lt;- function(vector, n) {
+  # Verifica se o vetor tem pelo menos n elementos
+  if (length(vector) &lt; n) {
+    stop("O vetor deve ter pelo menos n elementos.")
+  }
+  
+  # Cria um vetor vazio para armazenar as médias móveis
+  media_mov &lt;- numeric(length(vector) - n + 1)
+  
+  # Calcula a média móvel
+  for (i in 1:length(media_mov)) {
+    media_mov[i] &lt;- mean(vector[i:(i + n - 1)])
+  }
+  
+  return(media_mov)
+}
+
+# Exemplo de uso:
+vetor &lt;- c(2, 4, 6, 8, 10, 12, 14, 16, 18, 20)
+períodos &lt;- 3
+media_mov &lt;- media_movil(vetor, períodos)
+
+print(media_mov)
+```
+
+Neste caso, a função `media_movil` realiza o cálculo da média móvel simples de 
+forma explícita, sem a utilização do `filter`.</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Como criar um gráfico de dispersão no ggplot2?"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Claro! Vou mostrar como criar um gráfico de dispersão usando o `ggplot2` em R. 
-Primeiro, precisamos garantir que o `ggplot2` esteja instalado e carregado. Em 
-seguida, vamos criar um exemplo simples de gráfico de dispersão.
+<pre><code>Claro! Para criar um gráfico de dispersão no `ggplot2`, você precisará seguir 
+alguns passos básicos. Vou fornecer um exemplo passo a passo, incluindo a 
+instalação dos pacotes necessários e a criação de um gráfico de dispersão.
 
-Aqui está um exemplo passo a passo:
+### Passos:
 
-1. Instalar e carregar o pacote `ggplot2`.
-2. Criar um conjunto de dados.
-3. Criar o gráfico de dispersão usando `ggplot2`.
+1. **Instalar e carregar o pacote `ggplot2`:**
+   - Primeiro, certifique-se de ter o pacote `ggplot2` instalado. Se não tiver,
+você pode instalá-lo com o comando `install.packages("ggplot2")`.
+   - Em seguida, carregue o pacote com `library(ggplot2)`.
 
-Aqui está o código:
+2. **Criar um conjunto de dados:**
+   - Para este exemplo, vamos criar um conjunto de dados simples usando a 
+função `data.frame()`.
+
+3. **Usar `ggplot()` para criar o gráfico:**
+   - Defina seu conjunto de dados.
+   - Use `aes()` para mapear as variáveis para os eixos x e y.
+   - Adicione uma camada de geométrica (`geom_point()`) para criar o gráfico de
+dispersão.
+
+### Exemplo Completo:
 
 ```r
-# Instalar e carregar o pacote ggplot2
-if (!require(ggplot2)) {
-  install.packages("ggplot2")
-}
+# Instalar o pacote ggplot2 (se ainda não estiver instalado)
+install.packages("ggplot2")
+
+# Carregar o pacote ggplot2
 library(ggplot2)
 
-# Criar um exemplo de conjunto de dados
-# Vamos usar o conjunto de dados base do R `mtcars`
-data &lt;- mtcars
+# Criar um conjunto de dados simples
+# Suponha que temos duas variáveis: 'x' e 'y'
+set.seed(123)  # Para garantir que os resultados sejam reproduzíveis
+df &lt;- data.frame(
+  x = rnorm(100),  # 100 observações de uma distribuição normal
+  y = rnorm(100)   # 100 observações de uma distribuição normal
+)
 
-# Criar o gráfico de dispersão
-# Vamos plotar 'mpg' (milhas por galão) contra 'wt' (peso do veículo)
-dispersao &lt;- ggplot(data, aes(x = wt, y = mpg)) +
-  geom_point() +  # Ponto para cada observação
-  labs(title = "Gráfico de Dispersão: mpg vs. wt",  # Título do gráfico
-       x = "Peso do Veículo (wt)",  # Rótulo do eixo x
-       y = "Miles per Gallon (mpg)")  # Rótulo do eixo y
-
-# Exibir o gráfico
-print(dispersao)
+# Criar um gráfico de dispersão
+ggplot(df, aes(x = x, y = y)) +
+  geom_point() +  # Adiciona os pontos no gráfico
+  labs(title = "Gráfico de Dispersão", x = "Variável X", y = "Variável Y") +  #
+Título e rótulos dos eixos
+  theme_minimal()  # Tema minimalista
 ```
 
-Neste exemplo:
+### Explicação do Código:
 
-- Primeiro, verificamos se o pacote `ggplot2` está instalado e o carregamos.
-- Usamos o conjunto de dados base `mtcars` para criar o gráfico. `mtcars` 
-contém várias métricas de desempenho dos carros.
-- Usamos `ggplot()` para criar o gráfico, especificando os dados e mapeando 
-`wt` (peso do veículo) para o eixo x e `mpg` (milhas por galão) para o eixo y.
-- `geom_point()` é usado para adicionar pontos ao gráfico.
-- `labs()` é usado para adicionar título e rótulos aos eixos.
+- **`set.seed(123)`**: Isto garante que os resultados sejam reproduzíveis.
+- **`data.frame()`**: Cria um DataFrame com duas variáveis `x` e `y`, ambas 
+geradas a partir de uma distribuição normal.
+- **`ggplot(df, aes(x = x, y = y))`**: Inicia a criação do gráfico, 
+especificando o DataFrame e mapeando as variáveis `x` e `y` para os eixos x e 
+y, respectivamente.
+- **`geom_point()`**: Adiciona pontos ao gráfico de dispersão.
+- **`labs()`**: Define o título do gráfico e os rótulos dos eixos.
+- **`theme_minimal()`**: Aplica um tema minimalista ao gráfico.
 
-Você pode ajustar o gráfico adicionando mais personalizações, como cores, 
-tamanhos, ou linhas de regressão. Aqui está um exemplo com algumas 
-personalizações adicionais:
+### Resultado:
+
+Ao executar o código acima, você obterá um gráfico de dispersão com pontos 
+gerados a partir de duas variáveis aleatórias.
+
+Você pode personalizar ainda mais o gráfico adicionando mais camadas e 
+ajustando os parâmetros. Aqui está um exemplo com alguns ajustes adicionais:
 
 ```r
-# Exibir o gráfico com personalizações adicionais
-dispersao &lt;- ggplot(data, aes(x = wt, y = mpg)) +
-  geom_point(aes(color = hp), size = 3) +  # Ponto para cada observação, 
-colorido pelo valor de hp
-  geom_smooth(method = "lm", se = FALSE, color = "red") +  # Adicionar uma 
-linha de regressão
-  labs(title = "Gráfico de Dispersão: mpg vs. wt",
-       x = "Peso do Veículo (wt)",
-       y = "Miles per Gallon (mpg)",
-       color = "Potência (hp)")  # Rótulo do círculo de cor
-
-# Exibir o gráfico
-print(dispersao)
+ggplot(df, aes(x = x, y = y)) +
+  geom_point(size = 3, color = "blue", shape = 16) +  # Ajusta o tamanho, cor e
+forma dos pontos
+  labs(title = "Gráfico de Dispersão com Personalizações", x = "Variável X", y 
+= "Variável Y") +  # Título e rótulos dos eixos
+  theme_minimal() +  # Tema minimalista
+  theme(panel.grid.major = element_blank(),  # Remove a grade major
+        panel.grid.minor = element_blank(),  # Remove a grade minor
+        axis.line = element_line(color = "black"))  # Linha do eixo
 ```
 
-Neste exemplo, adicionamos uma linha de regressão linear com `geom_smooth()`, 
-personalizamos o tamanho e a cor dos pontos, e adicionamos um rótulo ao círculo
-de cor.
-
-Espero que isso ajude!</code></pre>
+Este código adiciona personalizações ao gráfico, como o tamanho, cor e forma 
+dos pontos, além de remover a grade e definir a linha do eixo.</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Give me a code of r programming language with the plotly package"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Sure! The `plotly` package in R allows you to create interactive plots. Below 
-is an example of how to create an interactive scatter plot using `plotly` in R.
-We'll use the `mtcars` dataset, which is included in base R, to create the 
-plot.
+is a simple example of how to create an interactive scatter plot using 
+`plotly`.
 
-First, you need to install and load the `plotly` package if you haven't 
-already:
+First, you need to install and load the `plotly` package. If you haven't 
+installed it yet, you can do so using the following commands:
 
 ```r
-# Install plotly if not already installed
-if (!requireNamespace("plotly", quietly = TRUE)) {
-  install.packages("plotly")
-}
+install.packages("plotly")
+```
 
+Once installed, you can load the package and create an interactive scatter 
+plot:
+
+```r
 # Load the plotly package
 library(plotly)
-```
 
-Next, we'll create an interactive scatter plot:
-
-```r
-# Load the mtcars dataset
-data(mtcars)
-
-# Create an interactive scatter plot using plotly
-plot_ly(mtcars, x = ~wt, y = ~mpg, type = 'scatter', mode = 'markers') %&gt;%
-  layout(
-    title = 'Interactive Scatter Plot: mpg vs. wt',
-    xaxis = list(title = 'Weight (wt)'),
-    yaxis = list(title = 'Miles per Gallon (mpg)')
-  )
-```
-
-In this example:
-
-- We load the `mtcars` dataset.
-- We use the `plot_ly` function to create the plot. The `x` and `y` parameters 
-are set to the `wt` and `mpg` columns, respectively.
-- We specify the plot type as `scatter` and set the mode to `markers` to plot 
-individual points.
-- We customize the layout with a title and axis labels.
-
-To run this code, you can copy and paste it into an R script or an R console 
-session. The plot will be displayed in your default web browser if you are 
-running this in a non-interactive environment like a console. If you are 
-running this in a Jupyter notebook or R Markdown document, it will render 
-directly in the document.
-
-If you want to save the plot to a file, you can use the `write_html` or 
-`write_image` functions provided by `plotly`. Here is an example of saving the 
-plot to an HTML file:
-
-```r
-# Save the plot to an HTML file
-write_html(
-  plot_ly(mtcars, x = ~wt, y = ~mpg, type = 'scatter', mode = 'markers') %&gt;%
-    layout(
-      title = 'Interactive Scatter Plot: mpg vs. wt',
-      xaxis = list(title = 'Weight (wt)'),
-      yaxis = list(title = 'Miles per Gallon (mpg)')
-    )
-  , file = "scatter_plot.html"
+# Create a sample dataset
+set.seed(123)  # For reproducibility
+data &lt;- data.frame(
+  x = rnorm(100),  # 100 random values from a normal distribution
+  y = rnorm(100)   # 100 random values from a normal distribution
 )
+
+# Create an interactive scatter plot
+p &lt;- plot_ly(data, x = ~x, y = ~y, type = 'scatter', mode = 'markers')
+
+# Add title and axis labels
+p &lt;- p %&gt;% layout(
+  title = "Interactive Scatter Plot",
+  xaxis = list(title = "X-axis"),
+  yaxis = list(title = "Y-axis")
+)
+
+# Display the plot
+p
 ```
 
-This will save the plot to a file named `scatter_plot.html` in your working 
-directory.
+### Explanation:
 
-Feel free to customize the plot further by adding more features like color, 
-size, and hover text!</code></pre>
+1. **Install and Load the Package:**
+   - `install.packages("plotly")`: Installs the `plotly` package.
+   - `library(plotly)`: Loads the `plotly` package into your R session.
+
+2. **Create a Sample Dataset:**
+   - `set.seed(123)`: Sets the seed for reproducibility.
+   - `data &lt;- data.frame(x = rnorm(100), y = rnorm(100))`: Creates a data frame
+with 100 random values for `x` and `y`.
+
+3. **Create the Interactive Scatter Plot:**
+   - `plot_ly(data, x = ~x, y = ~y, type = 'scatter', mode = 'markers')`: 
+Creates an interactive scatter plot using the `plot_ly` function. The `x` and 
+`y` arguments specify the columns in the data frame to use for the x and y 
+coordinates.
+
+4. **Add Title and Axis Labels:**
+   - `layout(...)`: Adds a title and axis labels to the plot.
+
+5. **Display the Plot:**
+   - `p`: The plot is displayed in an interactive viewer.
+
+### Running the Code:
+
+1. Copy and paste the code into your R console or a script.
+2. Run the code to generate and display the interactive scatter plot.
+
+This will create an interactive plot that you can hover over to see the 
+coordinates, and you can zoom and pan the plot as needed.</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Me mostre alguns exemplos de derivadas parciais"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Claro! Vamos criar alguns exemplos de cálculo de derivadas parciais em R. Vamos
-focar em duas funções com várias variáveis e calcular as suas derivadas 
-parciais com relação a cada variável.
+<pre><code>Claro! Vou mostrar alguns exemplos de cálculos de derivadas parciais para 
+funções de múltiplas variáveis. As derivadas parciais são utilizadas para 
+encontrar a taxa de mudança de uma função em relação a uma variável específica,
+mantendo as outras variáveis constantes.
 
 ### Exemplo 1: Função de Duas Variáveis
 
-Vamos considerar a função \( f(x, y) = x^2 + 3xy + y^2 \).
+Considere a função \( f(x, y) = x^2 y + 3y^2 \).
 
-A derivada parcial de \( f \) com relação a \( x \) é:
+1. **Derivada parcial com relação a \( x \):**
+   - A derivada parcial de \( f \) com relação a \( x \) é encontrada 
+diferenciando \( f \) em relação a \( x \) e tratando \( y \) como uma 
+constante.
+   \[
+   \frac{\partial f}{\partial x} = \frac{\partial}{\partial x} (x^2 y + 3y^2) =
+2xy
+   \]
 
-\[ \frac{\partial f}{\partial x} = 2x + 3y \]
-
-A derivada parcial de \( f \) com relação a \( y \) é:
-
-\[ \frac{\partial f}{\partial y} = 3x + 2y \]
+2. **Derivada parcial com relação a \( y \):**
+   - A derivada parcial de \( f \) com relação a \( y \) é encontrada 
+diferenciando \( f \) em relação a \( y \) e tratando \( x \) como uma 
+constante.
+   \[
+   \frac{\partial f}{\partial y} = \frac{\partial}{\partial y} (x^2 y + 3y^2) =
+x^2 + 6y
+   \]
 
 ### Exemplo 2: Função de Três Variáveis
 
-Vamos considerar a função \( g(x, y, z) = x^2 y + y^2 z + z^2 x \).
+Considere a função \( g(x, y, z) = x^2 y + y^2 z + z^2 x \).
 
-A derivada parcial de \( g \) com relação a \( x \) é:
+1. **Derivada parcial com relação a \( x \):**
+   - A derivada parcial de \( g \) com relação a \( x \) é:
+   \[
+   \frac{\partial g}{\partial x} = \frac{\partial}{\partial x} (x^2 y + y^2 z +
+z^2 x) = 2xy + z^2
+   \]
 
-\[ \frac{\partial g}{\partial x} = 2xy + z^2 \]
+2. **Derivada parcial com relação a \( y \):**
+   - A derivada parcial de \( g \) com relação a \( y \) é:
+   \[
+   \frac{\partial g}{\partial y} = \frac{\partial}{\partial y} (x^2 y + y^2 z +
+z^2 x) = x^2 + 2yz
+   \]
 
-A derivada parcial de \( g \) com relação a \( y \) é:
+3. **Derivada parcial com relação a \( z \):**
+   - A derivada parcial de \( g \) com relação a \( z \) é:
+   \[
+   \frac{\partial g}{\partial z} = \frac{\partial}{\partial z} (x^2 y + y^2 z +
+z^2 x) = y^2 + 2zx
+   \]
 
-\[ \frac{\partial g}{\partial y} = x^2 + 2yz \]
+### Exemplo 3: Função de Quatro Variáveis
 
-A derivada parcial de \( g \) com relação a \( z \) é:
+Considere a função \( h(x, y, z, w) = x^2 y + y^2 z + z^2 w + w^2 x \).
 
-\[ \frac{\partial g}{\partial z} = y^2 + 2zx \]
+1. **Derivada parcial com relação a \( x \):**
+   - A derivada parcial de \( h \) com relação a \( x \) é:
+   \[
+   \frac{\partial h}{\partial x} = \frac{\partial}{\partial x} (x^2 y + y^2 z +
+z^2 w + w^2 x) = 2xy + w^2
+   \]
 
-### Implementação em R
+2. **Derivada parcial com relação a \( y \):**
+   - A derivada parcial de \( h \) com relação a \( y \) é:
+   \[
+   \frac{\partial h}{\partial y} = \frac{\partial}{\partial y} (x^2 y + y^2 z +
+z^2 w + w^2 x) = x^2 + 2yz
+   \]
 
-Agora, vamos implementar essas funções e suas derivadas parciais em R.
+3. **Derivada parcial com relação a \( z \):**
+   - A derivada parcial de \( h \) com relação a \( z \) é:
+   \[
+   \frac{\partial h}{\partial z} = \frac{\partial}{\partial z} (x^2 y + y^2 z +
+z^2 w + w^2 x) = y^2 + 2zw
+   \]
+
+4. **Derivada parcial com relação a \( w \):**
+   - A derivada parcial de \( h \) com relação a \( w \) é:
+   \[
+   \frac{\partial h}{\partial w} = \frac{\partial}{\partial w} (x^2 y + y^2 z +
+z^2 w + w^2 x) = z^2 + 2wx
+   \]
+
+### Exemplo em R
+
+Se você quiser calcular estas derivadas parciais em R, pode usar a biblioteca 
+`pracma` que fornece funções para cálculos numéricos avançados, incluindo a 
+derivada parcial.
 
 ```r
-# Função principal
-f &lt;- function(x, y) {
-  return(x^2 + 3*x*y + y^2)
+# Instalar e carregar a biblioteca pracma
+install.packages("pracma")
+library(pracma)
+
+# Definir a função
+f &lt;- function(x, y, z, w) {
+  x^2 * y + y^2 * z + z^2 * w + w^2 * x
 }
 
-# Derivada parcial com relação a x
-df_dx &lt;- function(x, y) {
-  2*x + 3*y
+# Calcula a derivada parcial com relação a x
+df_dx &lt;- function(x, y, z, w) {
+  grad(f(x, y, z, w), 1)
 }
 
-# Derivada parcial com relação a y
-df_dy &lt;- function(x, y) {
-  3*x + 2*y
+# Calcula a derivada parcial com relação a y
+df_dy &lt;- function(x, y, z, w) {
+  grad(f(x, y, z, w), 2)
 }
 
-# Função principal com três variáveis
-g &lt;- function(x, y, z) {
-  return(x^2 * y + y^2 * z + z^2 * x)
+# Calcula a derivada parcial com relação a z
+df_dz &lt;- function(x, y, z, w) {
+  grad(f(x, y, z, w), 3)
 }
 
-# Derivada parcial com relação a x
-dg_dx &lt;- function(x, y, z) {
-  2*x*y + z^2
-}
-
-# Derivada parcial com relação a y
-dg_dy &lt;- function(x, y, z) {
-  x^2 + 2*y*z
-}
-
-# Derivada parcial com relação a z
-dg_dz &lt;- function(x, y, z) {
-  y^2 + 2*z*x
+# Calcula a derivada parcial com relação a w
+df_dw &lt;- function(x, y, z, w) {
+  grad(f(x, y, z, w), 4)
 }
 
 # Exemplo de uso
 x &lt;- 1
 y &lt;- 2
 z &lt;- 3
+w &lt;- 4
 
-# Calculando os valores
-f_value &lt;- f(x, y)
-df_dx_value &lt;- df_dx(x, y)
-df_dy_value &lt;- df_dy(x, y)
-
-g_value &lt;- g(x, y, z)
-dg_dx_value &lt;- dg_dx(x, y, z)
-dg_dy_value &lt;- dg_dy(x, y, z)
-dg_dz_value &lt;- dg_dz(x, y, z)
-
-# Exibindo os resultados
-cat("f(x, y) = ", f_value, "\n")
-cat("df/dx = ", df_dx_value, "\n")
-cat("df/dy = ", df_dy_value, "\n")
-
-cat("g(x, y, z) = ", g_value, "\n")
-cat("dg/dx = ", dg_dx_value, "\n")
-cat("dg/dy = ", dg_dy_value, "\n")
-cat("dg/dz = ", dg_dz_value, "\n")
+df_dx(x, y, z, w)
+df_dy(x, y, z, w)
+df_dz(x, y, z, w)
+df_dw(x, y, z, w)
 ```
 
-### Saída Esperada
-
-Quando você rodar o código acima, você verá a saída com os valores das funções 
-e suas derivadas parciais:
-
-```
-f(x, y) =  12
-df/dx =  7
-df/dy =  8
-g(x, y, z) =  20
-dg/dx =  8
-dg/dy =  13
-dg/dz =  12
-```
-
-Esses resultados correspondem aos cálculos das derivadas parciais para os 
-valores \( x = 1 \), \( y = 2 \), e \( z = 3 \).
-
-### Explicação
-
-- **Função \( f(x, y) = x^2 + 3xy + y^2 \)**:
-  - \( \frac{\partial f}{\partial x} = 2x + 3y \)
-  - \( \frac{\partial f}{\partial y} = 3x + 2y \)
-
-- **Função \( g(x, y, z) = x^2 y + y^2 z + z^2 x \)**:
-  - \( \frac{\partial g}{\partial x} = 2xy + z^2 \)
-  - \( \frac{\partial g}{\partial y} = x^2 + 2yz \)
-  - \( \frac{\partial g}{\partial z} = y^2 + 2zx \)
-
-Espero que isso ajude! Se você tiver mais perguntas ou precisar de exemplos 
-mais complexos, estou à disposição!</code></pre>
+Este código define uma função `f` e calcula as suas derivadas parciais em um 
+ponto específico usando a função `grad` do pacote `pracma`.</code></pre>
 </div>
 </div>
 <p>E para finalizar, uma história juvenil sobre aranhas e baratas</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Me mostre uma história juvenil curta sobre aranhas e baratas"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Claro! Aqui está uma pequena história juvenil curta sobre aranhas e baratas:
+<pre><code>Claro! Aqui está uma história juvenil curta sobre aranhas e baratas:
 
 ---
 
-**Título: A Grande Aventura das Aranhas e Baratas**
+### **Título: A Aventura das Aranhas e das Baratas**
 
-Numa noite ensolarada e quente, uma pequena barata chamada Bella e uma aranha 
-chamada Tom se encontraram na grama de um jardim encantado. Bella era uma 
-barata esperta e curiosa, sempre pronta para novas aventuras. Tom, por outro 
-lado, era calmo e pacífico, preferindo passar o dia teorizando teoremas 
-matemáticos sobre a vida.
+No coração de um velho jardim abandonado, viviam as baratas e as aranhas. O 
+jardim era cheio de folhas secas e flores desbotadas, mas era lá que as duas 
+espécies se encontravam.
 
-Enquanto Bella saltava de flor em flor, Tom sentava em seu teclado de fios e 
-teias, analisando as relações entre as criaturas do jardim. Um dia, Bella 
-perguntou a Tom:
+Um dia, uma pequena barata chamada Bella e uma jovem aranha chamada Spinner se 
+encontraram por acidente. Bella estava procurando um lugar seguro para 
+construir sua casa, enquanto Spinner buscava uma fonte de alimento.
 
-"Tom, por que você não sai para explorar um pouco? Tem tantas coisas 
-interessantes para ver aqui no jardim!"
+Spinner, com seu brilho dourado e alongados filamentos, se apresentou a Bella. 
+"Bem-vinda ao nosso reino, Bella! Aqui em nossa floresta, as baratas são 
+convidadas, mas não moradoras permanentes."
 
-Tom balançou a cabeça, sorrindo. "Ah, Bella, eu prefiro ficar aqui, observando 
-tudo com calma. As teias que eu crio são como livros abertos, repletas de 
-segredos sobre a natureza."
+Bella, um pouco surpresa, respondeu: "Eu estou apenas procurando um lugar para 
+me estabelecer. Sei que às vezes somos vistos como inimigos, mas nós somos 
+apenas animais, tentando sobreviver."
 
-Bella ficou curiosa. "Mas Tom, talvez você pudesse sair e ver as coisas da 
-minha perspectiva! Podemos explorar o jardim juntos."
+Spinner pensou por um momento e disse: "Você tem razão. Vamos ser amigos e ver 
+o que podemos fazer juntos. Talvez, juntas, possamos construir um novo lar que 
+nos sirva a ambos."
 
-Tom pensou por um momento, depois concordou. "Deixe-me pensar em um plano... 
-Vamos usar minha teia para criar uma ponte entre as flores e explorar juntos."
+Bella concordou. Juntas, elas exploraram o jardim, encontrando um canto 
+escondido atrás de uma grande raiz. Lá, Spinner usou sua habilidade de tecer 
+para criar uma elegante rede, enquanto Bella recolhia folhas e pétalas secas 
+para construir um refúgio confortável.
 
-Juntos, eles construíram uma ponte delicada de fios de silício, conectando duas
-flores distantes. Bella pulou de uma flor para outra, explorando o jardim, 
-enquanto Tom, com seu espírito matemático, observava e anotava.
+Logo, outras baratas e aranhas começaram a visitar o lugar, atraídas pelo novo 
+lar. Gradualmente, uma comunidade unida surgiu, onde baratas e aranhas 
+cooperavam, compartilhando recursos e protegendo um ao outro.
 
-Eles encontraram uma lagarta dançando entre as folhas, uma borboleta reluzente 
-e um pequeno rato dormindo em um canteiro. Cada momento era uma nova aventura!
+Spinner e Bella se tornaram as líderes da nova sociedade, promovendo a paz e a 
+harmonia entre as duas espécies. O jardim voltou a florescer, cheio de vida e 
+alegria.
 
-"Você acha que podemos encontrar mais criaturas?" perguntou Bella, olhando 
-ansiosa para Tom.
-
-Tom olhou para Bella e sorriu. "Claro, Bella. O mundo do jardim é infinito, 
-repleto de maravilhas aguardando descobertas."
-
-A partir daquele dia, Bella e Tom se tornaram os melhores amigos. Juntos, eles 
-exploraram o jardim, compartilharam histórias e descobertas, aprendendo que a 
-vida é mais rica quando compartilhada com alguém.
+Desde então, as baratas e as aranhas viviam em paz, aprendendo que juntos, 
+podiam enfrentar desafios e construir um futuro melhor. E assim, o jardim se 
+tornou um lugar onde a amizade e a cooperação eram a regra, não a exceção.
 
 ---
 
-Espero que você tenha gostado desta pequena história! Se quiser mais algum tipo
-de história ou tiver alguma outra solicitação, fique à vontade para perguntar!</code></pre>
+Espero que você tenha gostado desta história! Se precisar de mais alguma coisa,
+estou à disposição!</code></pre>
 </div>
 </div>
 </section>

@@ -173,6 +173,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                 <div class="quarto-category">Visualização de Dados</div>
                 <div class="quarto-category">Análise de Dados</div>
                 <div class="quarto-category">Ciência de Dados</div>
+                <div class="quarto-category">Tutorial</div>
               </div>
                   </div>
   </div>
@@ -240,21 +241,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Essas definições estão bem alinhadas com o livro <a href="https://www.amazon.com.br/Grammar-Graphics-Leland-Wilkinson/dp/0387245448">The Grammar of Graphics</a> de <a href="https://en.wikipedia.org/wiki/Leland_Wilkinson">Leland Wilkinson</a>, no qual o autor define um esquema geral para visualização de dados que divide os gráficos em componentes estéticas de objetos geométricos.</p>
 <p>A partir desses conceitos, <a href="http://hadley.nz/">Hadley Wickham</a> escreveu <a href="http://vita.had.co.nz/papers/layered-grammar.html">A Layered Grammar of Graphics</a> e criou o <a href="https://ggplot2.tidyverse.org/">ggplot2</a>, um pacote de visualização de dados para a linguagem de programação estatística R. Esse pacote ficou muito popular em diferentes contextos e grupos sociais.</p>
 <p>Para a linguagem Python, há o pacote <a href="https://plotnine.org/">plotnine</a>. Também se baseia em <code>The grammar of graphics</code> e pacote <code>ggplot2</code> da linguagem R. Portanto, esse post foi feito com o objetivo demonstrar alguns gráficos com a linguagem Python e o pacote plotnine.</p>
-<div id="6550a675" class="cell" data-execution_count="1">
+<div id="75988ccc" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pip install plotnine matplotlib</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="81f337e0" class="cell" data-execution_count="2">
+<div id="f3a1a1b7" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="plotnine" class="level2">
 <h2 class="anchored" data-anchor-id="plotnine">plotnine</h2>
-<div id="cbad4dbb" class="cell" data-execution_count="3">
+<div id="4227e25e" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine.data <span class="im">import</span> diamonds <span class="im">as</span> plotnine_diamonds</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="86885537" class="cell" data-execution_count="4">
+<div id="c76a5006" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plotnine_diamonds.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div>
@@ -355,7 +356,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>ggplot(data=&lt;‘DADOS’&gt;, mapping = aes(&lt;‘MAPEAMENTO_VARIAVEIS’&gt;)) + &lt;‘GEOM_FUNCAO’&gt;()</strong></p>
 <p>A componente <strong>&lt;‘DADOS’&gt;</strong> deve ser utilizada para importar os dados (geralmente de um data.frame) Já a componente <strong>&lt;‘MAPEAMENTO_VARIAVEIS’&gt;</strong> deve ser utilizada para estabelecer se alguma variável irá aparecer no eixo <em>x</em> ou <em>y</em>. Essa também pode ser utilizada por outras variáveis que serão representadas por cores, tamanhos ou formas diferentes. Para selecionar o tipo de gráfico que será plotado, deve-se usar as funções com prefixo <em>geom</em>.</p>
 <p>Para a construção do primeiro gráfico, a variável ‘price’ foi escolhida.</p>
-<div id="d839f8d3" class="cell" data-execution_count="5">
+<div id="4c194b31" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="op">=</span> ggplot(data<span class="op">=</span>plotnine_diamonds,mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">'price'</span>))</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>g1.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
@@ -376,7 +377,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>fill:</strong> Cor de Preenchimento</li>
 <li><strong>alpha:</strong> Quandidade desejada de transparência</li>
 </ul>
-<div id="fab352e1" class="cell" data-execution_count="6">
+<div id="0005f5d7" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>g2 <span class="op">=</span> ggplot(data<span class="op">=</span>plotnine_diamonds,mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">'price'</span>)) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>        geom_histogram(fill<span class="op">=</span><span class="st">'#CC092F'</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>g2.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -388,7 +389,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="7c21b0f8" class="cell" data-execution_count="7">
+<div id="3a3a1411" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>g3 <span class="op">=</span> ggplot(data<span class="op">=</span>plotnine_diamonds,mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">'price'</span>)) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  geom_histogram(fill<span class="op">=</span><span class="st">'#CC092F'</span>,color<span class="op">=</span><span class="st">'black'</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>g3.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -400,7 +401,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="982275a9" class="cell" data-execution_count="8">
+<div id="488a4e48" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>g4 <span class="op">=</span> ggplot(data<span class="op">=</span>plotnine_diamonds,mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">'price'</span>)) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>        geom_histogram(fill<span class="op">=</span><span class="st">'#CC092F'</span>,color<span class="op">=</span><span class="st">'black'</span>,alpha<span class="op">=</span><span class="fl">0.4</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>g4.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -413,7 +414,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Além desses elementos mencionados, também é possível adicionar outros elementos específicos para cada tipo de <strong>geom</strong>. Como exemplo, o argumento ‘bins’ do <strong>geom_histogram()</strong> controla o número de barras será modificado.</p>
-<div id="359e8bf8" class="cell" data-execution_count="9">
+<div id="f19b638d" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>g5 <span class="op">=</span> ggplot(data<span class="op">=</span>plotnine_diamonds,mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">'price'</span>)) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>        geom_histogram(fill<span class="op">=</span><span class="st">'#CC092F'</span>,color<span class="op">=</span><span class="st">'black'</span>,alpha<span class="op">=</span><span class="fl">0.4</span>,bins<span class="op">=</span><span class="dv">8</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>g5.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -426,7 +427,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Como curiosidade, também foi adicionada a função <strong>geom_rug()</strong>. Essa função basicamente cria linhas abaixo do gráfico para cada observação dentro das faixas de valores definidas pelo histograma.</p>
-<div id="42f54cac" class="cell" data-execution_count="10">
+<div id="d15831ea" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>g6 <span class="op">=</span> ggplot(data<span class="op">=</span>plotnine_diamonds.head(<span class="dv">25</span>),mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">'price'</span>)) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>   geom_histogram(fill<span class="op">=</span><span class="st">'#CC092F'</span>,color<span class="op">=</span><span class="st">'black'</span>,alpha<span class="op">=</span><span class="fl">0.4</span>,bins<span class="op">=</span><span class="dv">5</span>) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>   geom_rug()</span>
@@ -443,7 +444,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="densidade" class="level2">
 <h2 class="anchored" data-anchor-id="densidade">1.3 Densidade</h2>
 <p>Para construir um gráfico de densidade no plotnine, basta adicionar a função <strong>geom_density()</strong> à estrutura mapeada anteriormente. Novamente, adicionamos a função ‘geom_rug’.</p>
-<div id="7b426617" class="cell" data-execution_count="11">
+<div id="a7b422ee" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>g7 <span class="op">=</span> ggplot(data<span class="op">=</span>plotnine_diamonds,mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">'price'</span>)) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  geom_density(fill<span class="op">=</span><span class="st">'#0059b3'</span>) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  geom_rug()</span>
@@ -461,7 +462,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="boxplot">1.4 Boxplot</h2>
 <p>Pensando em análise univariada (uma variável), também é possível criar boxplots pelo pacote.</p>
 <p>Aqui o mapeamento foi alterado do eixo ‘x’ (utilizado no histograma e no gráfico de densidade) para o eixo ‘y’. (em ‘x’ talvez seja necessário colocar algum valor).</p>
-<div id="26aa7111" class="cell" data-execution_count="12">
+<div id="1cacd474" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>g81 <span class="op">=</span> ggplot(data<span class="op">=</span>plotnine_diamonds,mapping<span class="op">=</span>aes(y<span class="op">=</span><span class="st">'table'</span>)) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>        geom_boxplot(fill<span class="op">=</span><span class="st">'#0059b3'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>g82 <span class="op">=</span> ggplot(data<span class="op">=</span>plotnine_diamonds,mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="dv">100</span>, y<span class="op">=</span><span class="st">'table'</span>)) <span class="op">+</span> <span class="op">\</span></span>
@@ -484,7 +485,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Como curiosidade, também foram adicionadas as funções <strong>xlab()</strong> (Alterar o nome do eixo x), <strong>coord_flip()</strong> (Girar o gráfico) e <strong>ggtitle()</strong> (Adicionar um título).</p>
-<div id="dfde2f89" class="cell" data-execution_count="13">
+<div id="b26b7dd4" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>g9 <span class="op">=</span> ggplot(data<span class="op">=</span>plotnine_diamonds,mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="dv">100</span>,y<span class="op">=</span><span class="st">'table'</span>)) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>        geom_boxplot(fill<span class="op">=</span><span class="st">'#0059b3'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        xlab(<span class="st">'table'</span>) <span class="op">+</span> <span class="op">\</span></span>
@@ -500,7 +501,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Quando o assunto é análise bivariada(duas variáveis), podemos adicionar uma nova variável no eixo ‘x’ e fazer um boxplot para cada nível dessa variável.</p>
-<div id="bcc5a338" class="cell" data-execution_count="14">
+<div id="70862f3c" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>g10 <span class="op">=</span> ggplot(data<span class="op">=</span>plotnine_diamonds, mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">'cut'</span>,y<span class="op">=</span><span class="st">'table'</span>)) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>        geom_boxplot(fill<span class="op">=</span><span class="st">'#CC092F'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        xlab(<span class="st">'table'</span>) <span class="op">+</span> <span class="op">\</span></span>
@@ -515,7 +516,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Também podemos modificar as cores de contorno ou de preenchimento por essa mesma variável. Essa funcionalidade é mais interessante na presença de mais variáveis, mas fica como exemplo.</p>
-<div id="5e7a96aa" class="cell" data-execution_count="15">
+<div id="05f9f32a" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>g11 <span class="op">=</span> ggplot(data<span class="op">=</span>plotnine_diamonds,mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">'cut'</span>,y<span class="op">=</span><span class="st">'table'</span>,color<span class="op">=</span><span class="st">'cut'</span>)) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>        geom_boxplot(alpha<span class="op">=</span><span class="fl">0.5</span>) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        xlab(<span class="st">'table'</span>) <span class="op">+</span> <span class="op">\</span></span>
@@ -529,7 +530,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="9bebca67" class="cell" data-execution_count="16">
+<div id="0a97ab31" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>g12 <span class="op">=</span> ggplot(data<span class="op">=</span>plotnine_diamonds,mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">'cut'</span>,y<span class="op">=</span><span class="st">'table'</span>,fill<span class="op">=</span><span class="st">'cut'</span>)) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>        geom_boxplot(alpha<span class="op">=</span><span class="fl">0.5</span>) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        xlab(<span class="st">'table'</span>) <span class="op">+</span> <span class="op">\</span></span>
@@ -550,7 +551,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Esse tipo de gráfico necessita de um mapeamento com pelo menos duas variáveis, sendo uma no eixo ‘x’ (Variável sendo observada) e outra no eixo ‘y’ (Frequência Absoluta ou Frequência Relativa)</p>
 <section id="geom_bar" class="level3">
 <h3 class="anchored" data-anchor-id="geom_bar">geom_bar()</h3>
-<div id="8412bf02" class="cell" data-execution_count="17">
+<div id="85d83503" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>g13 <span class="op">=</span> ggplot(data<span class="op">=</span>plotnine_diamonds,mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">'cut'</span>)) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>       geom_bar(fill<span class="op">=</span><span class="st">'#CC092F'</span>,color<span class="op">=</span><span class="st">'black'</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>g13.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -565,7 +566,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Altera ordem do eixo x</li>
 </ul>
-<div id="87f97191" class="cell" data-execution_count="18">
+<div id="964d62fe" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>g14 <span class="op">=</span> ggplot(data<span class="op">=</span>plotnine_diamonds,mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">'cut'</span>)) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>       geom_bar(fill<span class="op">=</span><span class="st">'#CC092F'</span>,color<span class="op">=</span><span class="st">'black'</span>) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>       scale_x_discrete(limits<span class="op">=</span>plotnine_diamonds[<span class="st">'cut'</span>].value_counts().index.tolist())</span>
@@ -584,7 +585,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Cria tabela auxiliar</li>
 </ul>
-<div id="a5114eb9" class="cell" data-execution_count="19">
+<div id="fc55b820" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>diamonds_sum <span class="op">=</span> plotnine_diamonds.groupby(<span class="st">'color'</span>)[<span class="st">'price'</span>].<span class="bu">sum</span>().reset_index(name<span class="op">=</span><span class="st">'sum'</span>)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>diamonds_sum <span class="op">=</span> diamonds_sum.sort_values(by<span class="op">=</span><span class="st">'sum'</span>)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>diamonds_sum</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -645,7 +646,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Constroi gráfico baseado na tabela auxiliar</li>
 </ul>
-<div id="7945a742" class="cell" data-execution_count="20">
+<div id="8aa5dfd0" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>g15 <span class="op">=</span> ggplot(data<span class="op">=</span>diamonds_sum,mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">'color'</span>,y<span class="op">=</span><span class="st">'sum'</span>)) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>        geom_col(fill<span class="op">=</span><span class="st">'#0059b3'</span>,color<span class="op">=</span><span class="st">'black'</span>)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>g15.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -660,7 +661,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Cria outra tabela auxiliar</li>
 </ul>
-<div id="c77aa665" class="cell" data-execution_count="21">
+<div id="3d80c4db" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>diamonds_sum_group <span class="op">=</span> plotnine_diamonds.groupby([<span class="st">'color'</span>,<span class="st">'cut'</span>])[<span class="st">'price'</span>].<span class="bu">sum</span>().reset_index()</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>diamonds_sum_group</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
@@ -896,7 +897,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Cria novo gráfico</li>
 </ul>
-<div id="6af5870c" class="cell" data-execution_count="22">
+<div id="fc0ffd9d" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>g16 <span class="op">=</span> ggplot(data<span class="op">=</span>diamonds_sum_group,mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">'cut'</span>,y<span class="op">=</span><span class="st">'price'</span>,fill<span class="op">=</span><span class="st">'color'</span>)) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>        geom_col(stat<span class="op">=</span><span class="st">"identity"</span>)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>g16.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -911,7 +912,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Cria novo gráfico</li>
 </ul>
-<div id="675ba4ac" class="cell" data-execution_count="23">
+<div id="b93cadb8" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>g17 <span class="op">=</span> ggplot(data<span class="op">=</span>diamonds_sum_group,mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">'cut'</span>,y<span class="op">=</span><span class="st">'price'</span>,fill<span class="op">=</span><span class="st">'color'</span>)) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>       geom_col(position<span class="op">=</span><span class="st">"dodge"</span>, stat<span class="op">=</span><span class="st">"identity"</span>)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>g17.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -926,7 +927,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Cria outra tabela auxiliar com porcentagens</li>
 </ul>
-<div id="79a065b1" class="cell" data-execution_count="24">
+<div id="22fb9dbc" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>diamonds_count <span class="op">=</span> plotnine_diamonds.groupby(<span class="st">'clarity'</span>)[<span class="st">'clarity'</span>].count().reset_index(name<span class="op">=</span><span class="st">'count'</span>)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>diamonds_count[<span class="st">'percentage'</span>] <span class="op">=</span> <span class="bu">round</span>((diamonds_count[<span class="st">'count'</span>]<span class="op">/</span><span class="bu">sum</span>(diamonds_count[<span class="st">'count'</span>]))<span class="op">*</span><span class="dv">100</span>,<span class="dv">1</span>).astype(<span class="bu">str</span>) <span class="op">+</span> <span class="st">'%'</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>diamonds_count <span class="op">=</span> diamonds_count.sort_values(by<span class="op">=</span><span class="st">'count'</span>)</span>
@@ -1003,7 +1004,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Cria gráfico com porcentagens no topo de cada barra</li>
 </ul>
-<div id="456d7c5c" class="cell" data-execution_count="25">
+<div id="1dc557ac" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>g18 <span class="op">=</span> ggplot(data<span class="op">=</span>diamonds_count,mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">'clarity'</span>,y<span class="op">=</span><span class="st">'count'</span>,label<span class="op">=</span><span class="st">'percentage'</span>)) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>        geom_col(fill<span class="op">=</span><span class="st">'#0059b3'</span>,color<span class="op">=</span><span class="st">'black'</span>) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>        geom_text(va<span class="op">=</span><span class="st">'bottom'</span>) <span class="op">+</span> <span class="op">\</span></span>
@@ -1020,7 +1021,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Cria gráfico com porcentagens no meio de cada barra</li>
 </ul>
-<div id="8a578c1e" class="cell" data-execution_count="26">
+<div id="968fd57a" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>g19 <span class="op">=</span> ggplot(data<span class="op">=</span>diamonds_count,mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">'clarity'</span>,y<span class="op">=</span><span class="st">'count'</span>,label<span class="op">=</span><span class="st">'percentage'</span>)) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>        geom_col(fill<span class="op">=</span><span class="st">'#0059b3'</span>,color<span class="op">=</span><span class="st">'black'</span>) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>        geom_label(position <span class="op">=</span> position_stack(vjust <span class="op">=</span> <span class="fl">0.5</span>)) <span class="op">+</span> <span class="op">\</span></span>
@@ -1041,10 +1042,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Carrega nova base de dados</li>
 </ul>
-<div id="96c01e52" class="cell" data-execution_count="27">
+<div id="c909046c" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine.data <span class="im">import</span> mpg <span class="im">as</span> plotnine_mpg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="e8cc87b7" class="cell" data-execution_count="28">
+<div id="f86d7d53" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>plotnine_mpg.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
 <div>
@@ -1147,7 +1148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Cria gráfico de dispersão</li>
 </ul>
-<div id="3375c5b7" class="cell" data-execution_count="29">
+<div id="7dcc6093" class="cell" data-execution_count="29">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>g20 <span class="op">=</span> ggplot(data<span class="op">=</span>plotnine_mpg,mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">'displ'</span>,y<span class="op">=</span><span class="st">'cty'</span>)) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>        geom_point()</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>g20.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1162,7 +1163,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Cria gráfico de dispersão com modificação das cores de preenchimento por outra variável (qualitativa)</li>
 </ul>
-<div id="d690dd6c" class="cell" data-execution_count="30">
+<div id="4c195e14" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>g21 <span class="op">=</span> ggplot(data<span class="op">=</span>plotnine_mpg,mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">'displ'</span>,y<span class="op">=</span><span class="st">'cty'</span>,color<span class="op">=</span><span class="st">'manufacturer'</span>)) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>        geom_point()</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>g21.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1177,7 +1178,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Cria gráfico de dispersão com modificação das cores de preenchimento por outra variável (quantitativa)</li>
 </ul>
-<div id="6745bc08" class="cell" data-execution_count="31">
+<div id="f9a9d530" class="cell" data-execution_count="31">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>g22 <span class="op">=</span> ggplot(data<span class="op">=</span>plotnine_mpg,mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">'hwy'</span>,y<span class="op">=</span><span class="st">'cty'</span>,color<span class="op">=</span><span class="st">'displ'</span>)) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>        geom_point()</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>g22.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1192,7 +1193,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Cria gráfico de dispersão com modificação das cores de preenchimento por outra variável (quantitativa) e acrescenta uma reta de tendência</li>
 </ul>
-<div id="8c94d15f" class="cell" data-execution_count="32">
+<div id="ca0b4fda" class="cell" data-execution_count="32">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>g23 <span class="op">=</span> ggplot(data<span class="op">=</span>plotnine_mpg,mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">'hwy'</span>,y<span class="op">=</span><span class="st">'cty'</span>,color<span class="op">=</span><span class="st">'displ'</span>)) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>        geom_point() <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>        geom_smooth(method <span class="op">=</span> <span class="st">'lm'</span>,color<span class="op">=</span><span class="st">'blue'</span>)</span>
